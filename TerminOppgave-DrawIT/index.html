@@ -7,14 +7,46 @@
     <link rel="stylesheet" type = "text/css" href="css\style.css"> 
 </head> 
 <body>  
+    <!--Navigation bar-->
     <nav class="container">
         <h1 class="title">DrawIT</h1>
-        <p class="item">item1</p>
-        <p class="item">item1</p>
-        <p class="item">item1</p>
-        <p class="item">item1</p>   
+        <p class="item">Account</p>
+        <p class="item">Help</p>
+        <p class="item">User support</p>   
     </nav>
-    <canvas id="canvas" onmousemove="draw(event)"></canvas> 
+    <!--canvas-->
+    <canvas id="canvas" onmousemove="draw(event)" oncontextmenu="return false"></canvas> 
+    <div>
+        <!--Clear button-->
+        <button class="clear" id="cClear">Clear</button>
+        
+        <!--Stroke Size slider-->
+        <div class="sizeSlider">
+            <p id="strokeSize">Stroke size: </p>
+            <input type="range" id="sizeSlider" value="10">
+        </div>
+        <!--Mouse Cordinates-->
+        <div class="cords unselectable">
+            <p id="xCor">x: 0</p>
+            <p id="yCor">y: 0</p>
+        </div>
+
+        <!--Color-->
+        <tabel class="colorSelector">
+            <tr>
+                <th>R</th>
+                <th>G</th>
+                <th>B</th>
+            </tr>
+            <tr>
+                <td><input id="colorR" type="number" min="0" max="255" value="100"></td>
+                <td><input id="colorG" type="number" min="0" max="255" value="100"></td>
+                <td><input id="colorB" type="number" min="0" max="255" value="100"></td>
+            </tr>
+        </tabel>
+    </div>
+    <!--RANDOM-->
+    <input class="random" type="checkbox" value="1">
 <script src="js\script.js"></script>
 </body> 
 </html>
