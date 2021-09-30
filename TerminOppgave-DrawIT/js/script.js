@@ -13,6 +13,8 @@ var strokeSizeEl = document.getElementById("strokeSize");
 var colorR = document.getElementById("colorR")
 var colorG = document.getElementById("colorG")
 var colorB = document.getElementById("colorB")
+//random
+var randomCheck = document.getElementById("randomCheck");
 
 var Width;
 var Height;
@@ -62,7 +64,7 @@ function draw(e) {
 
     mousePos = {
         x: e.clientX,
-        y: e.clientY - 50
+        y: e.clientY
     };
 
     xCorEl.innerHTML = "x: " + mousePos.x
@@ -79,8 +81,12 @@ function draw(e) {
             console.log("pressing button: " + mouseDown[0])
             
 
-            
-            ctx.fillStyle = "rgb("+ colorR.value + "," + colorG.value + "," + colorB.value + ")";
+            if(randomCheck.checked) {
+                ctx.fillStyle = "rgb("+ Math.random() * 255 + "," + Math.random() * 255 + Math.random() * 255 +")";
+            }
+            else {
+                ctx.fillStyle = "rgb("+ colorR.value + "," + colorG.value + "," + colorB.value + ")";
+            }
             //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
             ctx.beginPath();
             ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)

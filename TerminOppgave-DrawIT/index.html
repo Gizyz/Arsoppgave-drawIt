@@ -10,9 +10,9 @@
     <!--Navigation bar-->
     <nav class="container">
         <h1 class="title">DrawIT</h1>
-        <p class="item">Account</p>
-        <p class="item">Help</p>
-        <p class="item">User support</p>   
+        <a href="account.html"><p class="item">Account</p></a>
+        <a href="help.html"><p class="item">Help</p></a>
+        <a href="account.html"><p class="item">User support</p></a>
     </nav>
     <!--canvas-->
     <canvas id="canvas" onmousemove="draw(event)" oncontextmenu="return false"></canvas> 
@@ -23,7 +23,7 @@
         <!--Stroke Size slider-->
         <div class="sizeSlider">
             <p id="strokeSize">Stroke size: </p>
-            <input type="range" id="sizeSlider" value="10">
+            <input type="range" id="sizeSlider" min="1" value="10">
         </div>
         <!--Mouse Cordinates-->
         <div class="cords unselectable">
@@ -46,7 +46,7 @@
         </tabel>
     </div>
     <!--RANDOM-->
-    <input class="random" type="checkbox" value="1">
+    <input id="randomCheck" class="random" type="checkbox">
 <script src="js\script.js"></script>
 </body> 
 </html>
