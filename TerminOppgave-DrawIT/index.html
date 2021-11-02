@@ -9,7 +9,7 @@
 <body>  
     <!--Navigation bar-->
     <nav class="container">
-        <h1 class="title">DrawIT</h1>
+        <a href="index.html"><h1 class="title">DrawIT</h1></a>
         <a href="account.html"><p class="item">Account</p></a>
         <a href="help.html"><p class="item">Help</p></a>
         <a href="account.html"><p class="item">User support</p></a>
@@ -32,18 +32,9 @@
         </div>
 
         <!--Color-->
-        <tabel class="colorSelector">
-            <tr>
-                <th>R</th>
-                <th>G</th>
-                <th>B</th>
-            </tr>
-            <tr>
-                <td><input id="colorR" type="number" min="0" max="255" value="100"></td>
-                <td><input id="colorG" type="number" min="0" max="255" value="100"></td>
-                <td><input id="colorB" type="number" min="0" max="255" value="100"></td>
-            </tr>
-        </tabel>
+        <div class="colorSelector">
+           <input id="color" type="color"></td>
+        </div>
     </div>
     <!--RANDOM-->
     <input id="randomCheck" class="random" type="checkbox">
