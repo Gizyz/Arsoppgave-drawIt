@@ -1,6 +1,8 @@
 //Canvas and context
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+var canvas2 = document.getElementById("canvas2");
+var ctx2 = canvas2.getContext("2d");
 //Cordinates
 var xCorEl = document.getElementById("xCor");
 var yCorEl = document.getElementById("yCor");
@@ -22,13 +24,16 @@ var strokeSize = 10;
 var mouseDown = [0, 0, 0, 0, 0, 0, 0, 0, 0],
 mouseDownCount = 0;
 
+Clr.addEventListener("click", setup);
+
 setup();
 window.onresize = setup;
 
 mouseClick()
 
 setInterval(draw(e), 1);
-Clr.addEventListener("click", setup);
+
+
 
 
 function mouseClick(e) {
@@ -49,6 +54,8 @@ function setup() {
     Height = window.innerHeight;
     canvas.width = Width; 
     canvas.height = Height;
+    canvas2.width = Width; 
+    canvas2.height = Height;
     console.log("setup!");
 }
 function drawSize(){
@@ -85,8 +92,9 @@ function draw(e) {
                 }
                 //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
                 ctx.beginPath();
-                ctx.arc(mousePos.x,mousePos.y  - 50, strokeSize, 0, 2*Math.PI)
+                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
                 ctx.fill();
+
             }
             if(mouseDown[2]){
                 //Erase
@@ -96,7 +104,7 @@ function draw(e) {
                 //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
                 ctx.beginPath();
                 /* ctx.arc(x, y, radius, startAngle, endAngle[, counterclockwise] */
-                ctx.arc(mousePos.x,mousePos.y - 50, strokeSize, 0, 2*Math.PI)
+                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
                 ctx.fill(); 
                 }   
             }
