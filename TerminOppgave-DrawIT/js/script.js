@@ -31,7 +31,7 @@ window.onresize = setup;
 
 mouseClick()
 
-setInterval(draw(e), 1);
+setInterval(draw(e), 3000);
 
 
 
@@ -74,13 +74,18 @@ function draw(e) {
     xCorEl.innerHTML = "x: " + mousePos.x
     yCorEl.innerHTML = "y: " + mousePos.y
 
-
+    //display circle
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    ctx2.fillStyle = color.value;
+    ctx2.beginPath();
+    ctx2.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
+    ctx2.fill();
 
     if(mouseDownCount){
         // alright, let's lift the little bugger up!
         for(var i = 0; i < mouseDown.length; ++i){
             if(mouseDown[0]){
-                //paint
+                  //paint
                 console.log("pressing button: " + mouseDown[0])
                 
                 //Random
@@ -102,7 +107,7 @@ function draw(e) {
 
                 ctx.fillStyle = ("white");
                 //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
-                ctx.beginPath();
+           ctx.beginPath();     
                 /* ctx.arc(x, y, radius, startAngle, endAngle[, counterclockwise] */
                 ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
                 ctx.fill(); 
