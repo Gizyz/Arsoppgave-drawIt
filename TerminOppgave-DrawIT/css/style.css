@@ -21,7 +21,7 @@ a {
 /*Sets a container for navbar*/
 .container {
     position: relative;
-    background-color: rgb(79, 79, 79);
+    background-color: rgb(233, 233, 233);
     display: flex;
     flex-direction: row;
     align-items: center;
