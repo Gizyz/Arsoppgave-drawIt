@@ -1,28 +1,38 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TerminOppgave-DrawIT</title>
-    <link rel="stylesheet" type = "text/css" href="css\style.css"> 
-</head> 
-<body>  
+    <link rel="stylesheet" type="text/css" href="css\style.css">
+</head>
+
+<body>
     <!--Navigation bar-->
     <nav class="container">
-        <a href="index.html"><h1 class="title">DrawIT</h1></a>
-        <a href="account.html"><p class="item">Account</p></a>
-        <a href="help.html"><p class="item">Help</p></a>
-        <a href="account.html"><p class="item">User support</p></a>
+        <a href="index.php">
+            <h1 class="title">DrawIT</h1>
+        </a>
+        <a href="account.php">
+            <p class="item">Account</p>
+        </a>
+        <a href="help.php">
+            <p class="item">Help</p>
+        </a>
+        <a href="account.php">
+            <p class="item">User support</p>
+        </a>
     </nav>
     <!--canvas-->
     <div>
         <canvas id="canvas" width="100%" height="100%" oncontextmenu="return false"></canvas>
-        <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)" oncontextmenu="return false"></canvas> 
+        <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)" oncontextmenu="return false"></canvas>
     </div>
     <div>
         <!--Clear button-->
         <button class="clear" id="cClear">Clear</button>
-        
+
         <!--Stroke Size slider-->
         <div class="sizeSlider">
             <p id="strokeSize">Stroke size: </p>
@@ -36,11 +46,12 @@
 
         <!--Color-->
         <div class="colorSelector">
-           <input id="color" type="color"></td>
+            <input id="color" type="color"></td>
         </div>
     </div>
     <!--RANDOM-->
     <input id="randomCheck" class="random" type="checkbox">
-<script src="js\script.js"></script>
-</body> 
+    <script src="js\script.js"></script>
+</body>
+
 </html>
