@@ -1,4 +1,3 @@
-
 <?php
 // Initialize the session
 session_start();
@@ -14,11 +13,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerminOppgave-DrawIT</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css\style.css">
-    <title>Account</title>
 </head>
 
 <body>
@@ -32,20 +30,44 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                    <a class="nav-link active" href="account.php">Account</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link" href="account.php">Account</a>
                     <a class="nav-link" href="support.php">Support</a>
                     <a class="nav-link disabled">User: <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
                 </div>
             </div>
         </div>
     </nav>
+    <!--canvas-->
+    <div onmousemove="oldCord(event)">
+        <canvas id="canvas" width="100%" height="100%" oncontextmenu="return false"></canvas>
+        <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)" oncontextmenu="return false"></canvas>
+    </div>
 
-    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
-    <p>
-        <a href="Del2\reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="Del2\logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-    </p>
+    <div>
+        <!--Clear button-->
+        <button class="clear" id="cClear">Clear</button>
+        <!--Save button-->
+        <a id="download" download="img.jpg"><button type="button" onClick="download()">Save</button></a>
+        <!--Stroke Size slider-->
+        <div class="sizeSlider">
+            <p id="strokeSize">Stroke size: </p>
+            <input type="range" id="sizeSlider" min="1" value="10">
+        </div>
+        <!--Mouse Cordinates-->
+        <div class="cords unselectable">
+            <p id="xCor">x: 0</p>
+            <p id="yCor">y: 0</p>
+        </div>
+
+        <!--Color-->
+        <div class="colorSelector">
+            <input id="color" type="color"></td>
+        </div>
+    </div>
+    <!--RANDOM-->
+    <input id="randomCheck" class="random" type="checkbox">
+    <script src="js\script.js"></script>
 </body>
 
 </html>

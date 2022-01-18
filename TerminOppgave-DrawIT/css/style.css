@@ -19,9 +19,10 @@ a {
     color: black;
 }
 /*Sets a container for navbar*/
-.container {
+
+/*.container {
     position: relative;
-    background-color: rgb(79, 79, 79);
+    background-color: rgb(233, 233, 233);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,7 +31,8 @@ a {
     z-index:3;
 }
 .item {
-    padding: 16px;
+    height:100%;
+    padding:16px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .item:hover {
@@ -41,19 +43,27 @@ a {
     justify-content: flex-start;
     margin-left: 10px;
 }
+.navUser {
+    position: relative;
+    right: 10px;
+    margin-right: 10px;
+}*/
+.navbar {
+    z-index: 2;
+}
 #canvas {
     position:absolute;
     left: 0;
-    top: 0;
-    z-index: 0;
+    bottom: 0;
+    z-index: -1;
     width: 100%;
     height: 100%;
 }
 #canvas2 {
     position:absolute;
     left:0px;
-    top:0px;
-    z-index:1;
+    bottom:0px;
+    z-index:0;
     width: 100%;
     height: 100%;
 }
@@ -91,6 +101,12 @@ a {
 .colorSelector input {
     height: 20px;
     width: 40px;
+}
+#download {
+    position: absolute;
+    z-index: 3;
+    right: 10px;
+    top:100px;
 }
 .random {
     position: absolute;
