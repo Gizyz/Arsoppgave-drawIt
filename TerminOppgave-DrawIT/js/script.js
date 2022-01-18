@@ -15,39 +15,42 @@ var strokeSizeEl = document.getElementById("strokeSize");
 var color = document.getElementById("color");
 //random
 var randomCheck = document.getElementById("randomCheck");
-
+var old
 var Width;
 var Height;
 var mousePos;
 var strokeSize = 10;
 
-var mouseDown = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+var mouseDown = [0, 0],
 mouseDownCount = 0;
 
 Clr.addEventListener("click", setup);
 
 setup();
 window.onresize = setup;
+mouseClick();
 
-mouseClick()
+canvas2.addEventListener("onmousedown", old(e));
 
-setInterval(draw(e), 3000);
-
-
-
+function oldCord(e) {
+    console.log("olddd")
+    old = {x: e.clientX, y: e.clientY};
+    console.log("oldx:",old.x,"oldy:",old.y)
+}
 
 function mouseClick(e) {
+    console.log(e);
     // let's pretend that a mouse doesn't have more than 9 buttons
-
     document.body.onmousedown = function(evt) { 
-    ++mouseDown[evt.button];
-    ++mouseDownCount;
+    mouseDown[evt.button] = 1;
+    mouseDownCount = 1;
     }
     document.body.onmouseup = function(evt) {
-    --mouseDown[evt.button];
-    --mouseDownCount;
+    mouseDown[evt.button] = 0;
+    mouseDownCount = 0;
     }
 }
+
 
 function setup() {
     Width = window.innerWidth;
@@ -65,12 +68,63 @@ function drawSize(){
 
 function draw(e) {
     drawSize()
-
     mousePos = {
         x: e.clientX,
         y: e.clientY
-    };
+    }
+    if(mouseDownCount){
+        // alright, let's lift the little bugger up!
+            if(mouseDown[0]){
 
+                //paint
+                console.log("pressing button: " + mouseDown[0])
+                
+                //Random
+                if(randomCheck.checked) {
+                    ctx.fillStyle = "rgb("+ Math.random() * 255 + "," + Math.random() * 255 + Math.random() * 255 +")";
+                    console.log("checked")
+                }
+                else {
+                    ctx.fillStyle = color.value;
+                }
+                //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
+
+                ctx.beginPath();
+                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2 * Math.PI)
+                ctx.fill();
+
+                ctx.strokeStyle = color.value;
+                ctx.lineWidth = strokeSize*2;
+                ctx.beginPath();
+                ctx.moveTo(old.x, old.y);
+                ctx.lineTo(mousePos.x,mousePos.y);
+                ctx.stroke();
+
+                old = {x: mousePos.x, y: mousePos.y}
+      
+
+            } else if(mouseDown[2]){
+                //Erase
+                console.log("pressing button: " + 2)
+
+                ctx.fillStyle = ("white");
+                ctx.beginPath();     
+                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
+                ctx.fill(); 
+
+                ctx.strokeStyle = ("white");
+                ctx.lineWidth = strokeSize*2;
+                ctx.beginPath();
+                ctx.moveTo(old.x, old.y);
+                ctx.lineTo(mousePos.x,mousePos.y);
+                ctx.stroke();
+
+                old = {x: mousePos.x, y: mousePos.y}
+                }   
+           // }
+    } else {
+        console.log("not pressing button")
+    }
     xCorEl.innerHTML = "x: " + mousePos.x
     yCorEl.innerHTML = "y: " + mousePos.y
 
@@ -80,41 +134,22 @@ function draw(e) {
     ctx2.beginPath();
     ctx2.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
     ctx2.fill();
-
-    if(mouseDownCount){
-        // alright, let's lift the little bugger up!
-        for(var i = 0; i < mouseDown.length; ++i){
-            if(mouseDown[0]){
-                  //paint
-                console.log("pressing button: " + mouseDown[0])
-                
-                //Random
-                if(randomCheck.checked) {
-                    ctx.fillStyle = "rgb("+ Math.random() * 255 + "," + Math.random() * 255 + Math.random() * 255 +")";
-                }
-                else {
-                    ctx.fillStyle = color.value;
-                }
-                //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
-                ctx.beginPath();
-                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
-                ctx.fill();
-
-            }
-            if(mouseDown[2]){
-                //Erase
-                console.log("pressing button: " + 2)
-
-                ctx.fillStyle = ("white");
-                //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
-           ctx.beginPath();     
-                /* ctx.arc(x, y, radius, startAngle, endAngle[, counterclockwise] */
-                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
-                ctx.fill(); 
-                }   
-            }
-    } else {
-        console.log("not pressing button")
-    }
          
+}
+
+
+function download() {
+    var download = document.getElementById("download");
+    var image = canvas.toDataURL("image/jpg")
+                .replace("image/jpg", "image/octet-stream");
+          download.setAttribute("href", image);
+          //download.setAttribute("download","archive.jpg");
+          $.ajax({
+            type: "POST",
+            url: "photo_upload.php",
+            data: {photo : dataUrl}
+          })
+          .done(function(respond){console.log("done: "+respond);})
+          .fail(function(respond){console.log("fail");})
+          .always(function(respond){console.log("always");});
 }

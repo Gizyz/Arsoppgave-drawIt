@@ -4,3 +4,9 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE paintings (
+    canvasId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id INT NOT NULL FOREIGN KEY REFERENCES users(id)
+    photo
+  
+);
