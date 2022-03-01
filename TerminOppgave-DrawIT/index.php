@@ -31,8 +31,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                    <a class="nav-link" href="account.php">Account</a>
-                    <a class="nav-link" href="support.php">Support</a>
+                    <a class="nav-link" href="php\account.php">Account</a>
+                    <a class="nav-link" href="php\support.php">Support</a>
                     <a class="nav-link disabled">User: <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
                 </div>
             </div>
