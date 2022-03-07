@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login\login.php");
+    header("location: php\login\login.php");
     exit;
 }
 ?>
@@ -23,14 +23,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">DrawIT</a>
+            <a class="navbar-brand" href="#">DrawIT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                     <a class="nav-link" href="php\account.php">Account</a>
                     <a class="nav-link" href="php\support.php">Support</a>
                     <a class="nav-link disabled">User: <?php echo htmlspecialchars($_SESSION["username"]); ?></a>
@@ -65,8 +65,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <input id="color" type="color"></td>
         </div>
     </div>
-    <!--RANDOM-->
-    <input id="randomCheck" class="random" type="checkbox">
     <script src="js\script.js"></script>
 </body>
 

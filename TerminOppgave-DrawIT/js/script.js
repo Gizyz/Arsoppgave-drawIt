@@ -79,21 +79,16 @@ function draw(e) {
                 //paint
                 console.log("pressing button: " + mouseDown[0])
                 
-                //Random
-                if(randomCheck.checked) {
-                    ctx.fillStyle = "rgb("+ Math.random() * 255 + "," + Math.random() * 255 + Math.random() * 255 +")";
-                    console.log("checked")
-                }
-                else {
-                    ctx.fillStyle = color.value;
-                }
+                ctx.fillStyle = color.value;
+                ctx.strokeStyle = color.value;
+                
                 //ctx.fillRect(mousePos.x - strokeSize/2,mousePos.y - (50 + strokeSize/2),strokeSize,strokeSize);
 
                 ctx.beginPath();
-                ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2 * Math.PI)
+                ctx.arc(old.x,old.y, strokeSize, 0, 2 * Math.PI)
                 ctx.fill();
 
-                ctx.strokeStyle = color.value;
+
                 ctx.lineWidth = strokeSize*2;
                 ctx.beginPath();
                 ctx.moveTo(old.x, old.y);
@@ -101,7 +96,10 @@ function draw(e) {
                 ctx.stroke();
 
                 old = {x: mousePos.x, y: mousePos.y}
-      
+
+                ctx.beginPath();
+                ctx.arc(old.x,old.y, strokeSize, 0, 2 * Math.PI)
+                ctx.fill();
 
             } else if(mouseDown[2]){
                 //Erase
