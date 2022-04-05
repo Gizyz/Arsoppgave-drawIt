@@ -21,7 +21,11 @@ var color = document.getElementById("color");
 //random
 var randomCheck = document.getElementById("randomCheck");
 
-
+//PixieJs
+let app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight
+});
 var old;
 var Width;
 var Height;

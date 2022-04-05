@@ -17,7 +17,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>TerminOppgave-DrawIT</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="TerminOppgave-DrawIT\js\pixi.js"></script>
+    <script src="js\pixi.min.js"></script>
 </head>
 
 <body>
@@ -41,32 +41,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </nav>
     <!--canvas-->
     <div onmousemove="oldCord(event)">
-        <canvas id="canvas" width="100%" height="100%" oncontextmenu="return false"></canvas>
-        <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)" oncontextmenu="return false"></canvas>
-    </div>
-
-    <div>
-        <!--Clear button-->
-        <button class="clear" id="cClear">Clear</button>
-        <!--Save button-->
-        <a id="download" download="img.jpg"><button type="button" onClick="download()">Save</button></a>
-        <!--Stroke Size slider-->
-        <div class="sizeSlider">
-            <p id="strokeSize">Stroke size: </p>
-            <input type="range" id="sizeSlider" min="1" value="10">
-        </div>
-        <!--Mouse Cordinates-->
-        <div class="cords unselectable">
-            <p id="xCor">x: 0</p>
-            <p id="yCor">y: 0</p>
+        <div id="canvas" width="100%" height="100%" oncontextmenu="return false">
+            <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)"
+                oncontextmenu="return false"></canvas>
         </div>
 
-        <!--Color-->
-        <div class="colorSelector">
-            <input id="color" type="color"></td>
+        <div>
+            <!--Clear button-->
+            <button class="clear" id="cClear">Clear</button>
+            <!--Save button-->
+            <a id="download" download="img.jpg"><button type="button" onClick="download()">Save</button></a>
+            <!--Stroke Size slider-->
+            <div class="sizeSlider">
+                <p id="strokeSize">Stroke size: </p>
+                <input type="range" id="sizeSlider" min="1" value="10">
+            </div>
+            <!--Mouse Cordinates-->
+            <div class="cords unselectable">
+                <p id="xCor">x: 0</p>
+                <p id="yCor">y: 0</p>
+            </div>
+
+            <!--Color-->
+            <div class="colorSelector">
+                <input id="color" type="color"></td>
+            </div>
         </div>
-    </div>
-    <script src="js\script.js"></script>
+        <script src="js\script.js"></script>
 </body>
 
 </html>
