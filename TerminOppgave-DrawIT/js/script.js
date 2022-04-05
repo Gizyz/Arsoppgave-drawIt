@@ -3,19 +3,26 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var canvas2 = document.getElementById("canvas2");
 var ctx2 = canvas2.getContext("2d");
+
 //Cordinates
 var xCorEl = document.getElementById("xCor");
 var yCorEl = document.getElementById("yCor");
+
 //Clear button
 var Clr = document.getElementById("cClear");
+
 //Size slider
 var sizeSlider = document.getElementById("sizeSlider");
 var strokeSizeEl = document.getElementById("strokeSize");
+
 //Color changer
 var color = document.getElementById("color");
+
 //random
 var randomCheck = document.getElementById("randomCheck");
-var old
+
+
+var old;
 var Width;
 var Height;
 var mousePos;
@@ -35,10 +42,11 @@ canvas2.addEventListener("onmousedown", old(e));
 function oldCord(e) {
     console.log("olddd")
     old = {x: e.clientX, y: e.clientY};
-    console.log("oldx:",old.x,"oldy:",old.y)
+    console.log("oldX:",old.x,"oldY:",old.y)
 }
 
 function mouseClick(e) {
+
     console.log(e);
     // let's pretend that a mouse doesn't have more than 9 buttons
     document.body.onmousedown = function(evt) { 
@@ -61,6 +69,7 @@ function setup() {
     canvas2.height = Height;
     console.log("setup!");
 }
+
 function drawSize(){
     strokeSize = sizeSlider.value;
     strokeSizeEl.innerHTML = ("Stroke size: " + strokeSize);
