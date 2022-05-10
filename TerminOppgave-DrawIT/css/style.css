@@ -109,9 +109,19 @@ a {
     right: 10px;
     top:100px;
 }
-.random {
-    position: absolute;
-    z-index: 3;
-    right: 60px;
-    top:60px;
+
+.support {
+    position: relative;
+    align-items: center;
+    margin-left: 10%;
+    height:100%;
+    width: 80%;
+    background-color: whitesmoke;
+    padding: 20px;
+}
+.supportMsg {
+    resize:both;
+    overflow: auto;
+    width: 550px;
+    height: 150px;
 }
