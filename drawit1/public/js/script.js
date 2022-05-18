@@ -36,13 +36,13 @@ canvas2.addEventListener("onmousedown", old(e));
 
 
 function setup() {
-    //Width = window.innerWidth;
-    //Height = window.innerHeight;
-    //canvas.width = Width; 
-    //canvas.height = Height;
-    //canvas2.width = Width; 
-    //canvas2.height = Height;
-    //console.log("setup!");
+    Width = window.innerWidth;
+    Height = window.innerHeight;
+    canvas.width = Width; 
+    canvas.height = Height;
+    canvas2.width = Width; 
+    canvas2.height = Height;
+    console.log("setup!");
 }
 
 
@@ -119,7 +119,7 @@ function draw(e) {
                 ctx.lineTo(mousePos.x,mousePos.y);
                 ctx.stroke();
 
-                old = {x: mousePos.x, y: mousePos.y}
+                old = {x: mousePos.x, y: mousePos.y-rect.top}
                 }
     } else {
         console.log("not pressing button")

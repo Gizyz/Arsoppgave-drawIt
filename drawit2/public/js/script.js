@@ -3,6 +3,8 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var canvas2 = document.getElementById("canvas2");
 var ctx2 = canvas2.getContext("2d");
+
+
 //Cordinates
 var xCorEl = document.getElementById("xCor");
 var yCorEl = document.getElementById("yCor");
@@ -32,15 +34,26 @@ mouseClick();
 
 canvas2.addEventListener("onmousedown", old(e));
 
+
+function setup() {
+    Width = window.innerWidth;
+    Height = window.innerHeight;
+    canvas.width = Width; 
+    canvas.height = Height;
+    canvas2.width = Width; 
+    canvas2.height = Height;
+    console.log("setup!");
+}
+
+
 function oldCord(e) {
-    console.log("olddd")
-    old = {x: e.clientX, y: e.clientY};
-    console.log("oldx:",old.x,"oldy:",old.y)
+    var rect = e.target.getBoundingClientRect();
+    old = {
+        x: e.clientX, 
+        y: e.clientY-rect.top};
 }
 
 function mouseClick(e) {
-    console.log(e);
-    // let's pretend that a mouse doesn't have more than 9 buttons
     document.body.onmousedown = function(evt) { 
     mouseDown[evt.button] = 1;
     mouseDownCount = 1;
@@ -52,15 +65,7 @@ function mouseClick(e) {
 }
 
 
-function setup() {
-    Width = window.innerWidth;
-    Height = window.innerHeight;
-    canvas.width = Width; 
-    canvas.height = Height;
-    canvas2.width = Width; 
-    canvas2.height = Height;
-    console.log("setup!");
-}
+
 function drawSize(){
     strokeSize = sizeSlider.value;
     strokeSizeEl.innerHTML = ("Stroke size: " + strokeSize);
@@ -68,17 +73,15 @@ function drawSize(){
 
 function draw(e) {
     drawSize()
+    var rect = e.target.getBoundingClientRect();
     mousePos = {
         x: e.clientX,
-        y: e.clientY
+        y: e.clientY-rect.top
     }
     if(mouseDownCount){
         // alright, let's lift the little bugger up!
             if(mouseDown[0]){
 
-                //paint
-                console.log("pressing button: " + mouseDown[0])
-                
                 ctx.fillStyle = color.value;
                 ctx.strokeStyle = color.value;
                 
@@ -102,13 +105,12 @@ function draw(e) {
                 ctx.fill();
 
             } else if(mouseDown[2]){
-                //Erase
-                console.log("pressing button: " + 2)
 
                 ctx.fillStyle = ("white");
                 ctx.beginPath();     
                 ctx.arc(mousePos.x,mousePos.y, strokeSize, 0, 2*Math.PI)
                 ctx.fill(); 
+
 
                 ctx.strokeStyle = ("white");
                 ctx.lineWidth = strokeSize*2;
@@ -117,14 +119,14 @@ function draw(e) {
                 ctx.lineTo(mousePos.x,mousePos.y);
                 ctx.stroke();
 
-                old = {x: mousePos.x, y: mousePos.y}
-                }   
-           // }
+                old = {x: mousePos.x, y: mousePos.y-rect.top}
+                }
     } else {
         console.log("not pressing button")
     }
-    xCorEl.innerHTML = "x: " + mousePos.x
-    yCorEl.innerHTML = "y: " + mousePos.y
+
+    xCorEl.innerHTML = "x: " + Math.trunc(mousePos.x);
+    yCorEl.innerHTML = "y: " + Math.trunc(mousePos.y);
 
     //display circle
     ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
