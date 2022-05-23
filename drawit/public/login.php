@@ -4,7 +4,7 @@ $username?>
 
 
 <div class="formContainer">
-    <form action="../private/include/login.inc.php" method="post">
+    <form class="signInUp" action="../private/include/login.inc.php" method="post">
         <div id="title">Login</div>
         <input type="text" name="username" placeholder="Username/Email...">
         <input type="password" name="pwd" placeholder="Password...">

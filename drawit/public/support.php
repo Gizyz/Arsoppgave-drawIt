@@ -19,13 +19,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <h3>Change size?</h3>
         <p>Click and drag the slider on the left side of the screen</p><input type="range" min="1" value="10">
         <h3>Change color?</h3>
-        <p>The button below changes the color of your brush</p><input type="color"></td>
-        <h3></h3>
-    </div>
-    <div>
+        <p>The button below changes the color of your brush</p><input type="color">
         <h1>Bug repport or extra questions</h1>
-        <form>
-            <label for="email">Mail: </label><br>
+        <form action="private\include\ticket.inc.php" method="post">
+            <label for="email">Mail*: </label><br>
             <input type="text" name="email"><br>
 
             <label for="problem">Question/bug:</label><br>
@@ -33,7 +30,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
             <input type='submit'>
         </form>
+
     </div>
+
 </section>
 </body>
 
