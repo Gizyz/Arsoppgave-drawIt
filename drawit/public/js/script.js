@@ -137,6 +137,12 @@ function draw(e) {
          
 }
 
+var saveContainerState = false;
+var saveContainerEl = document.getElementsByClassName("saveContainer");
+var saveButton = document.getElementById("save");
+saveButton.addEventListener("click", function (){
+    console.log("containerCLick");
+})
 
 function download() {
     var download = document.getElementById("download");

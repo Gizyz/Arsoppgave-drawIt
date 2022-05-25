@@ -20,8 +20,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Clear button-->
     <button class="clear unselectable" id="cClear">Clear</button>
     <!--Save button-->
-    <a class="unselectable" id="download" download="img.jpg"><button type="button"
-            onClick="download()">Save</button></a>
+    <button id="save" value="Download">Save</button>
+
+    <div class="saveContainer">
+        <div class="saveBox">
+
+            <!-- Bilde uppload -->
+            <form action="../private/include/upload.inc.php" method="post">
+                <input type="text" placeholder="Image name...">
+                <a class="unselectable" id="download" download="image.jpg">
+                    <button type="button" onClick="download()">Save</button>
+                </a>
+                <input type="submit" value="upload">
+            </form>
+        </div>
+    </div>
     <!--Stroke Size slider-->
     <div class="sizeSlider unselectable">
         <p id="strokeSize">Stroke size: </p>
