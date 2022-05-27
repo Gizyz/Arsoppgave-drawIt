@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="unselectable">
         <ul>
             <a class="icon">DrawIT</a>
             <li><a href="index.php">Home</a></li>

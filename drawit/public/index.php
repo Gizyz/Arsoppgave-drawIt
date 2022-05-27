@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <!--canvas-->
 <div class="canvasContainer" onmousemove="oldCord(event)">
-    <canvas id="canvas" width="100%" height="100%" oncontextmenu="return false"></canvas>
+    <canvas id="canvas" width="100%" height="100%"></canvas>
     <canvas id="canvas2" width="100%" height="100%" onmousemove="draw(event)" oncontextmenu="return false"></canvas>
 </div>
 
@@ -20,17 +20,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Clear button-->
     <button class="clear unselectable" id="cClear">Clear</button>
     <!--Save button-->
-    <button id="save" value="Download">Save</button>
+    <button class="unselectable" id="save">Save</button>
 
-    <div class="saveContainer">
-        <div class="saveBox">
+    <div class="saveContainer" id="modal">
+        <div class="saveBox unselectable" >
 
             <!-- Bilde uppload -->
-            <form action="../private/include/upload.inc.php" method="post">
-                <input type="text" placeholder="Image name...">
-                <a class="unselectable" id="download" download="image.jpg">
+            <h1>Download/upload canvas</h1>
+            <form action="../private/include/upload.inc.php" method="post" enctype="multipart/form-data">
+                <input id="imgName" type="text" placeholder="Image name...">
+                <a class="unselectable" id="download" download="">
                     <button type="button" onClick="download()">Save</button>
                 </a>
+                <input type="file" name="file" >
                 <input type="submit" value="upload">
             </form>
         </div>

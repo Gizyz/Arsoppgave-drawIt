@@ -135,7 +135,16 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION["loggedin"] = true;
         $_SESSION["userid"] = $uidExists["id"];
         $_SESSION["useruid"] = $uidExists["username"];
+        $_SESSION["url"] = $uidExists["url_address"];
         header("location: ../../public/index.php");
         exit();
     }
+}
+
+function createImgPath ($url) {
+    $results = mkdir("./uploads/$url" , "0777");
+    echo $results;
+}
+function imgUpload () {
+    
 }
