@@ -1,3 +1,2 @@
-# Termin-oppg-DrawIT
-min termin oppgave !!!
-very nice +.+
+# Årsoppgave DrawIT
+Etter å ha erfart crunch har jeg nå enda mer kompetanse innenfor IT.
