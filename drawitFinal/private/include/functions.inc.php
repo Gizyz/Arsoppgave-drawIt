@@ -7,9 +7,7 @@ function get_random_string($length) {
     $length = rand(4, $length);
 
     for($i=0;$i<$length;$i++) {
-
         $random = rand(0,61);
-
         $text .= $array[$random];
     }
     return $text;
@@ -133,18 +131,115 @@ function loginUser($conn, $username, $pwd) {
     else if ($checkPwd === true) {
         session_start();
         $_SESSION["loggedin"] = true;
-        $_SESSION["userid"] = $uidExists["id"];
+        $_SESSION["userid"] = $uidExists["user_id"];
         $_SESSION["useruid"] = $uidExists["username"];
+        $_SESSION["name"] = $uidExists["name"];
         $_SESSION["url"] = $uidExists["url_address"];
+        $_SESSION["email"] = $uidExists["email"];
+        $_SESSION["dateCreated"] = $uidExists["date"];
+        
         header("location: ../../public/index.php");
         exit();
     }
 }
 
 function createImgPath ($url) {
-    $results = mkdir("./uploads/$url" , "0777");
-    echo $results;
+    if(!file_exists("../uploads/$url")) {
+        $results = mkdir("../uploads/$url" , "0777");
+        echo $results;
+    } else {
+        echo "folder already exists";
+    }
 }
-function imgUpload () {
+function createTicket($conn, $email, $msg, ) {
+    $sql = "INSERT INTO tickets (email, msg, date, user_id) VALUES (?,?,?,?);";
+    $stmt = mysqli_stmt_init($conn);
     
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../public/index.php?error=ticketStmtfailed");
+        exit();
+    }
+    $user_id = $_SESSION["userid"];
+    $date = date("Y-m-d H:i:s");
+
+    mysqli_stmt_bind_param($stmt, "ssss", $email, $msg, $date, $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function imgUpload ($conn, $url, $imgName) {
+    $sql = "INSERT INTO images (url_address, img_name, date) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../public/index.php?error=uploadStmtfailed");
+        exit();
+    }
+    
+    $date = date("Y-m-d H:i:s");
+
+    mysqli_stmt_bind_param($stmt, "sss", $url, $imgName, $date);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    
+    $user_id = $_SESSION["userid"];
+    relationTableUpdate($conn, $user_id, $imgName);
+    
+    header("location: ../../public/index.php?error=none");
+}
+function relationTableUpdate ($conn, $user_id, $imgName) {   
+    // image_id
+    $sql = "SELECT image_id FROM images WHERE img_name = '$imgName';";
+    
+    $stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../public/index.php?error=updateRelationsImageStmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    $image_id = mysqli_stmt_get_result($stmt);
+    $image_id = mysqli_fetch_assoc($image_id)['image_id'];
+    mysqli_stmt_close($stmt);
+
+    //Insert into users_has_images
+    $sql = "INSERT INTO users_has_images (user_id, image_id) VALUES (?,?);";
+     
+    $stmt = mysqli_stmt_init($conn);
+    
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../../public/index.php?error=updateRelationsImageStmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "ss", $user_id, $image_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    echo "Navn:".$imgName."<br>"."imageId:".$image_id."<br>"."userId:".$user_id."<br>";
+}
+function deleteImg($conn, $url, $img_name) {
+    //Deleting from sql
+    $sql = "DELETE FROM images WHERE url_address = '$url' AND img_name ='$img_name'";
+
+
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        //Couldn't prepare stmt
+        header("location: ../../public/index.php?error=deleteImageStmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+
+    //deleting from server
+    $file = "../uploads/$url/$img_name.jpg";
+    If (unlink($file)) {
+        // file was successfully deleted
+        header("Location: ../../public/profile.php?error=none");
+      } else {
+        // there was a problem deleting the file
+        header("Location: ../../public/profile.php?error=fileDeleteProblem");
+      }
 }

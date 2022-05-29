@@ -71,7 +71,7 @@ ul {
 li {
   list-style: none;
   border-bottom-style: solid;
-  border-color: black;
+  border-color: rgb(26, 26, 26);
 }
 ul li a {
   color: white;
@@ -170,7 +170,7 @@ a {
   height: 20px;
   width: 40px;
 }
-#save {
+#saveModal {
   position: absolute;
   z-index: 3;
   right: 10px;
@@ -226,3 +226,24 @@ td {
   border: 1px solid rgb(145, 144, 144);
   width: 200px;
 }
+
+
+
+.imgContainer {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+/* Profile image display sizing */
+.imgDisplay {
+  width: auto;
+  height: 100px;
+  border: 1px solid;
+  margin: 5px;
+}
+/* .imgBox {
+  background-color: #6c757d;
+  margin: 5px;
+  padding: 1px;
+} 

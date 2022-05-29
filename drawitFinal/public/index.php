@@ -20,21 +20,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Clear button-->
     <button class="clear unselectable" id="cClear">Clear</button>
     <!--Save button-->
-    <button class="unselectable" id="save">Save</button>
+    <button class="unselectable" id="saveModal">Save</button>
 
     <div class="saveContainer" id="modal">
-        <div class="saveBox unselectable" >
+        <div class="saveBox unselectable">
 
             <!-- Bilde uppload -->
             <h1>Download/upload canvas</h1>
+            <p>Image name can only contain letters and numbers</p>
             <form action="../private/include/upload.inc.php" method="post" enctype="multipart/form-data">
-                <input id="imgName" type="text" placeholder="Image name...">
+                <input id="imgName" name="imgName" type="text" placeholder="Image name...">
                 <a class="unselectable" id="download" download="">
                     <button type="button" onClick="download()">Save</button>
                 </a>
-                <input type="file" name="file" >
-                <input type="submit" value="upload">
+                <input type="hidden" id="canvasImg" name="imgData" value="">
+                <input type="submit" value="upload" name="submit" id="uploadBtn">
             </form>
+            <?php
+                //if (isset($_GET["error"])) {
+                //    if($_GET["error"] == "invalidName") {
+                //        echo "<p>Image name can only contain letters and numbers</p>";
+                //    }
+                //}            
+            ?>
         </div>
     </div>
     <!--Stroke Size slider-->

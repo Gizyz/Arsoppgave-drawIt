@@ -31,17 +31,22 @@ window.onresize = setup;
 mouseClick();
 
 //save button and upload
-var modalBtn = document.getElementById("save");
+var modalBtn = document.getElementById("saveModal");
 var modalEl = document.getElementById("modal");
 
 var downloadFormEl = document.forms[0];
 var imgName = document.getElementById("imgName");
+var canvasImg = document.getElementById("canvasImg")
 
 modalEl.addEventListener("click", modalBtnEvent);
-modalBtn.addEventListener("click", modalBtnEvent);
+modalBtn.addEventListener("click", function() {
+  modalBtnEvent();
+  canvasToImage();
+});
 
 function modalBtnEvent(event) {
   modalEl.style.display = "flex";
+
   if (event.target === modalEl) {
     modalEl.style.display = "none";
   }
@@ -56,7 +61,15 @@ function download() {
   download.setAttribute("download", imgName.value + ".jpg");
 }
 
+downloadFormEl.addEventListener("submit", canvasToImage);
+
+function canvasToImage() {
+  canvasImg.value = canvas.toDataURL("image/jpeg");//.replace("image/jpg", "image/octet-stream");
+
+}
 //Canvas functions
+canvas2.onmousedown = draw(e);
+
 function setup() {
   Width = window.innerWidth;
   Height = window.innerHeight;
@@ -64,6 +77,10 @@ function setup() {
   canvas.height = Height;
   canvas2.width = Width;
   canvas2.height = Height;
+
+  ctx.fillStyle = "#FFF";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(canvas, 0, 0);
 }
 
 function oldCord(e) {
