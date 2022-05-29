@@ -20,15 +20,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <p>Click and drag the slider on the left side of the screen</p><input type="range" min="1" value="10">
         <h3>Change color?</h3>
         <p>The button below changes the color of your brush</p><input type="color">
-        <h1>Bug repport or extra questions</h1>
-        <form action="private\include\ticket.inc.php" method="post">
+
+        <h1>Profile</h1>
+        <p>In the profile you can view all your stored data</p>
+        <p>And all your upoloaded canvases, here you can decide to delete or download them to your device</p>
+        <h1>Tickets</h1>
+        <form action="../private/include/ticket.inc.php" method="post">
             <label for="email">Mail*: </label><br>
-            <input type="text" name="email"><br>
+            <input type="text" name="email" placeholder="Email..."
+                value="<?php echo htmlspecialchars($_SESSION['email'])?>"><br>
 
             <label for="problem">Question/bug:</label><br>
-            <textarea class="supportMsg" name="problem"></textarea><br>
+            <textarea class="supportMsg" name="ticketMsg" placeholder="Problem...."></textarea><br>
 
-            <input type='submit'>
+            <input type="submit" name="submit">
         </form>
 
     </div>

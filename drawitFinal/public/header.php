@@ -11,13 +11,12 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="unselectable">
         <ul>
             <a class="icon">DrawIT</a>
             <li><a href="index.php">Home</a></li>
             <li><a href="support.php">Support</a></li>
             <li><a href="trusler.php">Trusler</a></li>
-            <li><a href="lover.php">Lovverk</a>
             <li>
         </ul>
         <ul>
